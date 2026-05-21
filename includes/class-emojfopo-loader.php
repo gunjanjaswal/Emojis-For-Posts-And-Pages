@@ -18,8 +18,13 @@
  *
  * @package    Emojis_For_Posts_And_Pages
  * @subpackage Emojis_For_Posts_And_Pages/includes
- * @author     Gunjan Jaswaal <hello@gunjanjaswal.me>
+ * @author     Gunjan Jaswal <hello@gunjanjaswal.me>
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 class Emojfopo_Loader {
 
     /**

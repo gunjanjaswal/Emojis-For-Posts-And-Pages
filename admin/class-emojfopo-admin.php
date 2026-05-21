@@ -17,8 +17,13 @@
  *
  * @package    Emojis_For_Posts_And_Pages
  * @subpackage Emojis_For_Posts_And_Pages/admin
- * @author     Gunjan Jaswaal <hello@gunjanjaswal.me>
+ * @author     Gunjan Jaswal <hello@gunjanjaswal.me>
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 class Emojfopo_Admin {
 
     /**
@@ -107,10 +112,26 @@ class Emojfopo_Admin {
         // Check if we're on the correct plugin
         if (plugin_basename($file) === $plugin_basename) {
             // Add donate link at the end
-            $donate_link = '<a href="https://buymeacoffee.com/gunjanjaswal" target="_blank" style="color:#3db634;font-weight:bold;">' . __('Donate', 'emojis-for-posts-and-pages') . '</a>';
+            $donate_link = '<a href="https://ko-fi.com/gunjanjaswal" target="_blank" style="color:#0073aa;font-weight:bold;">' . __('Support on Ko-fi', 'emojis-for-posts-and-pages') . '</a>';
             $links[] = $donate_link; // Add to the end of the array
         }
-        
+
+        return $links;
+    }
+
+    /**
+     * Add Contact Developer link to plugin row meta on the Plugins screen.
+     *
+     * @since  1.1.2
+     * @param  array  $links Existing plugin row meta links.
+     * @param  string $file  Plugin file name.
+     * @return array Modified row meta links.
+     */
+    public function add_plugin_row_meta($links, $file) {
+        $plugin_basename = plugin_basename(plugin_dir_path(__DIR__) . 'emojis-for-posts-and-pages.php');
+        if (plugin_basename($file) === $plugin_basename) {
+            $links[] = '<a href="mailto:hello@gunjanjaswal.me">' . __('Contact Developer', 'emojis-for-posts-and-pages') . '</a>';
+        }
         return $links;
     }
     

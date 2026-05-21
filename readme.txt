@@ -1,10 +1,10 @@
 === Emojis for Posts and Pages ===
 Contributors: gunjanjaswal
-Donate link: https://buymeacoffee.com/gunjanjaswal
+Donate link: https://ko-fi.com/gunjanjaswal
 Tags: emoji, reactions, feedback, comments, social
 Requires at least: 5.0
-Tested up to: 6.9
-Stable tag: 1.1.1
+Tested up to: 7.0
+Stable tag: 1.1.2
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -91,6 +91,13 @@ Yes, basic statistics are available on the plugin settings page. More detailed a
 
 == Changelog ==
 
+= 1.1.2 =
+* Updated "Tested up to" to WordPress 7.0.
+* Replaced Buy Me a Coffee donation link with Ko-fi (https://ko-fi.com/gunjanjaswal).
+* Added "Contact Developer" link to plugin row meta on the Plugins screen.
+* Added GitHub Plugin URI header (https://github.com/gunjanjaswal/Emojis-For-Posts-And-Pages).
+* Author display name updated to "Gunjan Jaswal".
+
 = 1.1.1 =
 * Fixed WordPress coding standards: Added proper prefixes to all global variables
 * Variable names now use 'emojfopo_' prefix for compliance
@@ -107,6 +114,9 @@ Yes, basic statistics are available on the plugin settings page. More detailed a
 * Initial release
 
 == Upgrade Notice ==
+
+= 1.1.2 =
+Compatibility with WordPress 7.0; donation link moved to Ko-fi; Contact Developer row meta + GitHub link added.
 
 = 1.1.1 =
 Coding standards fix for WordPress.org plugin check compliance.

@@ -17,8 +17,13 @@
  *
  * @package    Emojis_For_Posts_And_Pages
  * @subpackage Emojis_For_Posts_And_Pages/public
- * @author     Gunjan Jaswaal <hello@gunjanjaswal.me>
+ * @author     Gunjan Jaswal <hello@gunjanjaswal.me>
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 class Emojfopo_Public {
 
     /**

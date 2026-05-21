@@ -135,15 +135,24 @@ This plugin is licensed under the GPL v2 or later.
 
 ## 👨‍💻 Author
 
-- [Gunjan Jaswaal](https://gunjanjaswal.me/)
+- [Gunjan Jaswal](https://gunjanjaswal.me/)
+- GitHub: [gunjanjaswal/Emojis-For-Posts-And-Pages](https://github.com/gunjanjaswal/Emojis-For-Posts-And-Pages)
+- Contact: hello@gunjanjaswal.me
 
-## ☕ Support
+## Support
 
-If you find this plugin useful, consider buying me a coffee!
+If this plugin has been helpful, consider supporting development on Ko-fi:
 
-[![Buy Me A Coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://buymeacoffee.com/gunjanjaswal)
+[![Support on Ko-fi](https://img.shields.io/badge/Ko--fi-Support-FF5E5B?style=for-the-badge&logo=ko-fi&logoColor=white)](https://ko-fi.com/gunjanjaswal)
 
 ## 📝 Changelog
+
+### Version 1.1.2
+- Updated "Tested up to" to WordPress 7.0.
+- Replaced Buy Me a Coffee donation link with Ko-fi (https://ko-fi.com/gunjanjaswal).
+- Added "Contact Developer" + GitHub links to plugin row meta on the Plugins screen.
+- Added GitHub Plugin URI header (https://github.com/gunjanjaswal/Emojis-For-Posts-And-Pages).
+- Author display name updated to "Gunjan Jaswal".
 
 ### Version 1.1.1
 - Fixed WordPress coding standards: Added proper prefixes to all global variables

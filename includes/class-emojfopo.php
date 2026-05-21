@@ -18,8 +18,13 @@
  * @since      1.0.0
  * @package    Emojis_For_Posts_And_Pages
  * @subpackage Emojis_For_Posts_And_Pages/includes
- * @author     Gunjan Jaswaal <hello@gunjanjaswal.me>
+ * @author     Gunjan Jaswal <hello@gunjanjaswal.me>
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 class Emojfopo {
 
     /**
@@ -140,6 +145,9 @@ class Emojfopo {
         
         // Add donation link to plugin action links
         $this->loader->add_filter('plugin_action_links', $plugin_admin, 'add_plugin_action_links', 10, 2);
+
+        // Add Contact Developer + GitHub links to plugin row meta
+        $this->loader->add_filter('plugin_row_meta', $plugin_admin, 'add_plugin_row_meta', 10, 2);
     }
 
     /**

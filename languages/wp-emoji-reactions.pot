@@ -1,4 +1,4 @@
-# Copyright (C) 2025 Gunjan Jaswaal
+# Copyright (C) 2026 Gunjan Jaswal
 # This file is distributed under the GPL v2 or later.
 msgid ""
 msgstr ""
@@ -27,7 +27,7 @@ msgid "Add colorful emoji reactions to your WordPress posts and pages, similar t
 msgstr ""
 
 #. Author of the plugin
-msgid "Gunjan Jaswaal"
+msgid "Gunjan Jaswal"
 msgstr ""
 
 #. Author URI of the plugin
