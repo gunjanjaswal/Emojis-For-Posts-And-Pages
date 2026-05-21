@@ -147,6 +147,10 @@ If this plugin has been helpful, consider supporting development on Ko-fi:
 
 ## 📝 Changelog
 
+### Version 1.1.3
+- WordPress 7.0 iframed-editor hygiene: scoped admin CSS/JS to the plugin's own admin screens so nothing leaks into the editor iframe or unrelated admin pages.
+- Front-end reactions are emitted server-side via the `the_content` filter — no editor canvas assets are loaded.
+
 ### Version 1.1.2
 - Updated "Tested up to" to WordPress 7.0.
 - Replaced Buy Me a Coffee donation link with Ko-fi (https://ko-fi.com/gunjanjaswal).

@@ -57,11 +57,31 @@ class Emojfopo_Admin {
     }
 
     /**
+     * Check if the current admin screen belongs to this plugin.
+     *
+     * The block editor in WordPress 7.0 runs inside an iframe. Plugin admin
+     * assets (this settings page only) belong to the parent admin chrome, so we
+     * scope enqueues tightly to avoid leaking CSS/JS into the editor iframe or
+     * other admin screens.
+     *
+     * @since 1.1.3
+     * @param string $hook Current admin page hook.
+     * @return bool True if this is one of the plugin's own admin screens.
+     */
+    private function is_plugin_admin_screen($hook) {
+        return is_string($hook) && (false !== strpos($hook, 'emojfopo') || false !== strpos($hook, 'emojis-for-posts-and-pages'));
+    }
+
+    /**
      * Register the stylesheets for the admin area.
      *
      * @since    1.0.0
+     * @param string $hook Current admin page hook.
      */
-    public function enqueue_styles() {
+    public function enqueue_styles($hook = '') {
+        if (!$this->is_plugin_admin_screen($hook)) {
+            return;
+        }
         wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/emojfopo-admin.css', array(), $this->version, 'all');
     }
 
@@ -69,10 +89,14 @@ class Emojfopo_Admin {
      * Register the JavaScript for the admin area.
      *
      * @since    1.0.0
+     * @param string $hook Current admin page hook.
      */
-    public function enqueue_scripts() {
+    public function enqueue_scripts($hook = '') {
+        if (!$this->is_plugin_admin_screen($hook)) {
+            return;
+        }
         wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/emojfopo-admin.js', array('jquery'), $this->version, false);
-        
+
         wp_localize_script(
             $this->plugin_name,
             'emojfopo_admin',
@@ -130,6 +154,7 @@ class Emojfopo_Admin {
     public function add_plugin_row_meta($links, $file) {
         $plugin_basename = plugin_basename(plugin_dir_path(__DIR__) . 'emojis-for-posts-and-pages.php');
         if (plugin_basename($file) === $plugin_basename) {
+            $links[] = '<a href="https://wordpress.org/support/plugin/emojis-for-posts-and-pages/" target="_blank">' . __('Plugin Support', 'emojis-for-posts-and-pages') . '</a>';
             $links[] = '<a href="mailto:hello@gunjanjaswal.me">' . __('Contact Developer', 'emojis-for-posts-and-pages') . '</a>';
         }
         return $links;

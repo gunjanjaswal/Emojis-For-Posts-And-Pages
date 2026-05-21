@@ -4,7 +4,7 @@ Donate link: https://ko-fi.com/gunjanjaswal
 Tags: emoji, reactions, feedback, comments, social
 Requires at least: 5.0
 Tested up to: 7.0
-Stable tag: 1.1.2
+Stable tag: 1.1.3
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -91,6 +91,10 @@ Yes, basic statistics are available on the plugin settings page. More detailed a
 
 == Changelog ==
 
+= 1.1.3 =
+* WordPress 7.0 iframed-editor hygiene: scoped admin CSS/JS to the plugin's own admin screens so nothing leaks into the editor iframe or unrelated admin pages.
+* Front-end reactions are emitted server-side via the `the_content` filter — no editor canvas assets are loaded, so the editor iframe transition has no impact.
+
 = 1.1.2 =
 * Updated "Tested up to" to WordPress 7.0.
 * Replaced Buy Me a Coffee donation link with Ko-fi (https://ko-fi.com/gunjanjaswal).
@@ -114,6 +118,9 @@ Yes, basic statistics are available on the plugin settings page. More detailed a
 * Initial release
 
 == Upgrade Notice ==
+
+= 1.1.3 =
+WordPress 7.0 iframed-editor hygiene: admin assets now scoped only to the plugin's own admin pages.
 
 = 1.1.2 =
 Compatibility with WordPress 7.0; donation link moved to Ko-fi; Contact Developer row meta + GitHub link added.
