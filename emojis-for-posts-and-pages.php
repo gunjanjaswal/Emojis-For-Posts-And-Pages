@@ -4,7 +4,7 @@
  * Plugin URI: https://wordpress.org/plugins/emojis-for-posts-and-pages/
  * GitHub Plugin URI: https://github.com/gunjanjaswal/Emojis-For-Posts-And-Pages
  * Description: Add colorful emoji reactions to your WordPress posts and pages, similar to Facebook reactions.
- * Version: 1.1.3
+ * Version: 1.2.0
  * Author: Gunjan Jaswal
  * Author URI: https://gunjanjaswal.me
  * Donate link: https://ko-fi.com/gunjanjaswal
@@ -26,7 +26,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Current plugin version.
  * Start at version 1.0.0 and use SemVer - https://semver.org
  */
-define( 'EMOJFOPO_VERSION', '1.1.3' );
+define( 'EMOJFOPO_VERSION', '1.2.0' );
 
 /**
  * Define plugin paths and URLs.

@@ -147,6 +147,16 @@ If this plugin has been helpful, consider supporting development on Ko-fi:
 
 ## 📝 Changelog
 
+### Version 1.2.0
+- New: Engagement effects — emoji burst + floating reactions (Facebook-Live style) when visitors react.
+- New: Animated reaction counts that pop as they grow.
+- New: Milestone celebrations — confetti + toast when a post crosses 10/25/50/100/250/500/1000+ reactions.
+- New: Light haptic feedback on supported mobile devices.
+- New: One-tap share buttons (X, Facebook, WhatsApp, Copy link) with native mobile share sheet.
+- New: Settings toggles for effects and share buttons (both on by default).
+- New: "Settings" link on the plugin row in the Plugins screen.
+- Accessibility: all animations respect `prefers-reduced-motion`. No external libraries.
+
 ### Version 1.1.3
 - WordPress 7.0 iframed-editor hygiene: scoped admin CSS/JS to the plugin's own admin screens so nothing leaks into the editor iframe or unrelated admin pages.
 - Front-end reactions are emitted server-side via the `the_content` filter — no editor canvas assets are loaded.

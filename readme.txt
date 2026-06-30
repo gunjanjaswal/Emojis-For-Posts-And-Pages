@@ -4,7 +4,7 @@ Donate link: https://ko-fi.com/gunjanjaswal
 Tags: emoji, reactions, feedback, comments, social
 Requires at least: 5.0
 Tested up to: 7.0
-Stable tag: 1.1.3
+Stable tag: 1.2.0
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -24,6 +24,9 @@ Emojis for Posts and Pages allows your visitors to react to your content with co
 * One reaction per IP address to prevent spam
 * Mobile-friendly and responsive design
 * Uses Google's Noto Color Emoji font for consistent cross-platform display
+* Eye-catching engagement effects: emoji burst, floating reactions, animated counts and milestone confetti
+* One-tap social sharing (X, Facebook, WhatsApp, Copy link) with native mobile share sheet support
+* Respects the visitor's "reduced motion" preference for accessibility
 
 ### How It Works
 
@@ -91,6 +94,17 @@ Yes, basic statistics are available on the plugin settings page. More detailed a
 
 == Changelog ==
 
+= 1.2.0 =
+* New: Engagement effects — emojis burst and float upward when visitors react (Facebook-Live style).
+* New: Animated reaction counts that pop as they grow.
+* New: Milestone celebrations — confetti and a toast when a post crosses 10, 25, 50, 100, 250, 500, 1000+ reactions.
+* New: Light haptic feedback on supported mobile devices when reacting.
+* New: One-tap share buttons (X, Facebook, WhatsApp, Copy link) with native share sheet on mobile.
+* New: Two settings toggles to enable/disable effects and share buttons (both on by default).
+* New: "Settings" link added to the plugin row on the Plugins screen.
+* Accessibility: All animations honor the visitor's prefers-reduced-motion setting.
+* No external libraries — confetti and animations are pure CSS/JS, keeping the plugin lightweight.
+
 = 1.1.3 =
 * WordPress 7.0 iframed-editor hygiene: scoped admin CSS/JS to the plugin's own admin screens so nothing leaks into the editor iframe or unrelated admin pages.
 * Front-end reactions are emitted server-side via the `the_content` filter — no editor canvas assets are loaded, so the editor iframe transition has no impact.
@@ -118,6 +132,9 @@ Yes, basic statistics are available on the plugin settings page. More detailed a
 * Initial release
 
 == Upgrade Notice ==
+
+= 1.2.0 =
+Big engagement update: emoji burst & floating animations, milestone confetti, animated counts, haptics, and one-tap social share buttons. All optional and motion-safe.
 
 = 1.1.3 =
 WordPress 7.0 iframed-editor hygiene: admin assets now scoped only to the plugin's own admin pages.

@@ -97,7 +97,7 @@ class Emojfopo_Public {
         
         // Get custom reaction names
         $custom_names = get_option( 'emojfopo_custom_names', array() );
-        
+
         wp_localize_script(
             $this->plugin_name,
             'emojfopo_reactions',
@@ -108,7 +108,12 @@ class Emojfopo_Public {
                 'reaction_added'  => esc_html__( 'Your reaction has been added!', 'emojis-for-posts-and-pages' ),
                 'error'           => esc_html__( 'An error occurred. Please try again.', 'emojis-for-posts-and-pages' ),
                 'you_reacted_with' => esc_html__( 'You reacted with', 'emojis-for-posts-and-pages' ),
-                'reaction_names'  => $custom_names
+                'reaction_names'  => $custom_names,
+                // Engagement effects
+                'effects'         => get_option( 'emojfopo_enable_effects', 'yes' ) === 'yes' ? 1 : 0,
+                'milestones'      => array( 10, 25, 50, 100, 250, 500, 1000, 5000, 10000 ),
+                'milestone_text'  => esc_html__( 'reactions and counting! 🎉', 'emojis-for-posts-and-pages' ),
+                'copied_text'     => esc_html__( 'Link copied!', 'emojis-for-posts-and-pages' ),
             )
         );
     }
@@ -145,8 +150,20 @@ class Emojfopo_Public {
         
         $post_id = get_the_ID();
         $reactions_html = $this->get_reactions_html($post_id, true);
-        
-        echo wp_kses_post($reactions_html);
+
+        // Allow the inline share <svg> icons in addition to standard post HTML.
+        $allowed = wp_kses_allowed_html( 'post' );
+        $allowed['svg']  = array(
+            'viewbox' => true, 'width' => true, 'height' => true, 'fill' => true,
+            'stroke' => true, 'stroke-width' => true, 'stroke-linecap' => true,
+            'stroke-linejoin' => true, 'aria-hidden' => true, 'focusable' => true, 'xmlns' => true,
+        );
+        $allowed['path'] = array(
+            'd' => true, 'fill' => true, 'stroke' => true, 'stroke-width' => true,
+            'stroke-linecap' => true, 'stroke-linejoin' => true,
+        );
+
+        echo wp_kses( $reactions_html, $allowed );
     }
     
     /**

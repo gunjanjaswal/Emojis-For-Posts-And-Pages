@@ -135,6 +135,10 @@ class Emojfopo_Admin {
         
         // Check if we're on the correct plugin
         if (plugin_basename($file) === $plugin_basename) {
+            // Add settings link at the start
+            $settings_link = '<a href="' . esc_url(admin_url('options-general.php?page=' . $this->plugin_name)) . '">' . __('Settings', 'emojis-for-posts-and-pages') . '</a>';
+            array_unshift($links, $settings_link);
+
             // Add donate link at the end
             $donate_link = '<a href="https://ko-fi.com/gunjanjaswal" target="_blank" style="color:#0073aa;font-weight:bold;">' . __('Support on Ko-fi', 'emojis-for-posts-and-pages') . '</a>';
             $links[] = $donate_link; // Add to the end of the array
@@ -195,7 +199,19 @@ class Emojfopo_Admin {
             'emojfopo_title_text',
             array($this, 'validate_title_text')
         );
-        
+
+        register_setting(
+            'emojfopo_settings',
+            'emojfopo_enable_effects',
+            array($this, 'validate_yes_no')
+        );
+
+        register_setting(
+            'emojfopo_settings',
+            'emojfopo_enable_share',
+            array($this, 'validate_yes_no')
+        );
+
         add_settings_section(
             'emojfopo_general_settings',
             esc_html__('General Settings', 'emojis-for-posts-and-pages'),
@@ -226,7 +242,23 @@ class Emojfopo_Admin {
             $this->plugin_name,
             'emojfopo_general_settings'
         );
-        
+
+        add_settings_field(
+            'emojfopo_enable_effects',
+            esc_html__('Engagement Effects', 'emojis-for-posts-and-pages'),
+            array($this, 'enable_effects_field_callback'),
+            $this->plugin_name,
+            'emojfopo_general_settings'
+        );
+
+        add_settings_field(
+            'emojfopo_enable_share',
+            esc_html__('Share Buttons', 'emojis-for-posts-and-pages'),
+            array($this, 'enable_share_field_callback'),
+            $this->plugin_name,
+            'emojfopo_general_settings'
+        );
+
         add_settings_section(
             'emojfopo_emoji_settings',
             __('Emoji Settings', 'emojis-for-posts-and-pages'),
@@ -317,6 +349,38 @@ class Emojfopo_Admin {
         echo '<p class="description">' . esc_html__('Customize the title text shown above reactions. Default: "Reactions:"', 'emojis-for-posts-and-pages') . '</p>';
     }
     
+    /**
+     * Engagement effects field callback
+     *
+     * @since    1.2.0
+     */
+    public function enable_effects_field_callback() {
+        $value = get_option('emojfopo_enable_effects', 'yes');
+        ?>
+        <label>
+            <input type="checkbox" name="emojfopo_enable_effects" value="yes" <?php checked($value, 'yes'); ?>>
+            <?php esc_html_e('Enable emoji burst, floating reactions, count animation and milestone confetti', 'emojis-for-posts-and-pages'); ?>
+        </label>
+        <p class="description"><?php esc_html_e('Adds delightful, performant animations when visitors react. Automatically disabled for visitors who prefer reduced motion.', 'emojis-for-posts-and-pages'); ?></p>
+        <?php
+    }
+
+    /**
+     * Share buttons field callback
+     *
+     * @since    1.2.0
+     */
+    public function enable_share_field_callback() {
+        $value = get_option('emojfopo_enable_share', 'yes');
+        ?>
+        <label>
+            <input type="checkbox" name="emojfopo_enable_share" value="yes" <?php checked($value, 'yes'); ?>>
+            <?php esc_html_e('Show one-tap share buttons (X, Facebook, WhatsApp, Copy link) below reactions', 'emojis-for-posts-and-pages'); ?>
+        </label>
+        <p class="description"><?php esc_html_e('Lets readers spread your post in a single tap. Uses the native share sheet on mobile when available.', 'emojis-for-posts-and-pages'); ?></p>
+        <?php
+    }
+
     /**
      * Emojis field callback
      *
@@ -476,7 +540,20 @@ class Emojfopo_Admin {
         if (empty($input)) {
             return __('Reactions:', 'emojis-for-posts-and-pages');
         }
-        
+
         return sanitize_text_field($input);
+    }
+
+    /**
+     * Validate a yes/no checkbox option.
+     *
+     * Unchecked checkboxes are not submitted, so a missing value means "no".
+     *
+     * @since    1.2.0
+     * @param    mixed    $input    Submitted value.
+     * @return   string   'yes' or 'no'.
+     */
+    public function validate_yes_no($input) {
+        return ($input === 'yes') ? 'yes' : 'no';
     }
 }
