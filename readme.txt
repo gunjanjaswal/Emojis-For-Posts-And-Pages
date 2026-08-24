@@ -3,7 +3,7 @@ Contributors: gunjanjaswal
 Donate link: https://ko-fi.com/gunjanjaswal
 Tags: emoji, reactions, feedback, comments, social
 Requires at least: 5.0
-Tested up to: 7.0
+Tested up to: 7.1
 Stable tag: 1.2.0
 Requires PHP: 7.4
 License: GPLv2 or later
