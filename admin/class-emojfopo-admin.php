@@ -120,6 +120,117 @@ class Emojfopo_Admin {
             $this->plugin_name,
             array($this, 'display_plugin_setup_page')
         );
+
+        add_submenu_page(
+            'options-general.php',
+            __('Emoji Reaction Analytics', 'emojis-for-posts-and-pages'),
+            __('Emoji Analytics', 'emojis-for-posts-and-pages'),
+            'manage_options',
+            $this->plugin_name . '-analytics',
+            array($this, 'display_analytics_page')
+        );
+    }
+
+    /**
+     * Render the reaction analytics page.
+     *
+     * @since 1.3.0
+     */
+    public function display_analytics_page() {
+        if (!current_user_can('manage_options')) {
+            return;
+        }
+
+        global $wpdb;
+        $table = $wpdb->prefix . 'emojfopo_reactions';
+
+        $cache_key = 'emojfopo_analytics';
+        $data      = wp_cache_get($cache_key, 'emojis-for-posts-and-pages');
+
+        if (false === $data) {
+            $table_esc = esc_sql($table);
+            // phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+            $total     = (int) $wpdb->get_var("SELECT COUNT(*) FROM `{$table_esc}`");
+            $by_emoji  = $wpdb->get_results("SELECT emoji_id, COUNT(*) AS c FROM `{$table_esc}` GROUP BY emoji_id ORDER BY c DESC", ARRAY_A);
+            $top_posts = $wpdb->get_results("SELECT post_id, COUNT(*) AS c FROM `{$table_esc}` GROUP BY post_id ORDER BY c DESC LIMIT 20", ARRAY_A);
+            // phpcs:enable WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+            $data = array(
+                'total'     => $total,
+                'by_emoji'  => is_array($by_emoji) ? $by_emoji : array(),
+                'top_posts' => is_array($top_posts) ? $top_posts : array(),
+            );
+            wp_cache_set($cache_key, $data, 'emojis-for-posts-and-pages', 5 * MINUTE_IN_SECONDS);
+        }
+
+        $emoji_map = get_option('emojfopo_enabled_emojis', array(
+            'like' => '👍', 'love' => '❤️', 'laugh' => '😂', 'wow' => '😮', 'sad' => '😢', 'angry' => '😠',
+        ));
+        ?>
+        <div class="wrap">
+            <h1><?php echo esc_html__('Emoji Reaction Analytics', 'emojis-for-posts-and-pages'); ?></h1>
+
+            <h2 style="font-size:40px;margin:10px 0;"><?php echo esc_html(number_format_i18n($data['total'])); ?>
+                <span style="font-size:16px;color:#646970;font-weight:400;"><?php echo esc_html__('total reactions', 'emojis-for-posts-and-pages'); ?></span>
+            </h2>
+
+            <?php if (0 === $data['total']) : ?>
+                <div class="notice notice-info"><p><?php echo esc_html__('No reactions yet. Once visitors start reacting, their activity will show up here.', 'emojis-for-posts-and-pages'); ?></p></div>
+            <?php else : ?>
+                <h2><?php echo esc_html__('Reactions by emoji', 'emojis-for-posts-and-pages'); ?></h2>
+                <table class="widefat striped" style="max-width:420px;">
+                    <thead><tr>
+                        <th><?php echo esc_html__('Emoji', 'emojis-for-posts-and-pages'); ?></th>
+                        <th><?php echo esc_html__('Reactions', 'emojis-for-posts-and-pages'); ?></th>
+                        <th><?php echo esc_html__('Share', 'emojis-for-posts-and-pages'); ?></th>
+                    </tr></thead>
+                    <tbody>
+                    <?php foreach ($data['by_emoji'] as $row) :
+                        $id    = $row['emoji_id'];
+                        $char  = isset($emoji_map[$id]) ? $emoji_map[$id] : $id;
+                        $count = (int) $row['c'];
+                        $pct   = $data['total'] > 0 ? round(($count / $data['total']) * 100) : 0;
+                        ?>
+                        <tr>
+                            <td style="font-size:22px;"><?php echo esc_html($char); ?> <span style="font-size:13px;color:#646970;"><?php echo esc_html($id); ?></span></td>
+                            <td><?php echo esc_html(number_format_i18n($count)); ?></td>
+                            <td><?php echo esc_html($pct); ?>%</td>
+                        </tr>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
+
+                <h2 style="margin-top:30px;"><?php echo esc_html__('Most-reacted posts', 'emojis-for-posts-and-pages'); ?></h2>
+                <table class="widefat striped">
+                    <thead><tr>
+                        <th><?php echo esc_html__('Post', 'emojis-for-posts-and-pages'); ?></th>
+                        <th><?php echo esc_html__('Reactions', 'emojis-for-posts-and-pages'); ?></th>
+                    </tr></thead>
+                    <tbody>
+                    <?php foreach ($data['top_posts'] as $row) :
+                        $pid   = (int) $row['post_id'];
+                        $title = get_the_title($pid);
+                        if ('' === $title) {
+                            /* translators: %d: post ID. */
+                            $title = sprintf(__('Post #%d', 'emojis-for-posts-and-pages'), $pid);
+                        }
+                        $edit = get_edit_post_link($pid);
+                        ?>
+                        <tr>
+                            <td>
+                                <?php if ($edit) : ?>
+                                    <a href="<?php echo esc_url($edit); ?>"><?php echo esc_html($title); ?></a>
+                                <?php else : ?>
+                                    <?php echo esc_html($title); ?>
+                                <?php endif; ?>
+                            </td>
+                            <td><?php echo esc_html(number_format_i18n((int) $row['c'])); ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
+            <?php endif; ?>
+        </div>
+        <?php
     }
     
     /**

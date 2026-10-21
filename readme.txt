@@ -4,7 +4,7 @@ Donate link: https://ko-fi.com/gunjanjaswal
 Tags: emoji, reactions, feedback, comments, social
 Requires at least: 5.0
 Tested up to: 7.1
-Stable tag: 1.2.0
+Stable tag: 1.3.0
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -94,6 +94,9 @@ Yes, basic statistics are available on the plugin settings page. More detailed a
 
 == Changelog ==
 
+= 1.3.0 =
+* New: a Reaction Analytics screen under Settings. See your total reactions, a breakdown by emoji with each one's share, and the posts people react to the most, each linked straight to its editor.
+
 = 1.2.0 =
 * New: Engagement effects — emojis burst and float upward when visitors react (Facebook-Live style).
 * New: Animated reaction counts that pop as they grow.
@@ -132,6 +135,9 @@ Yes, basic statistics are available on the plugin settings page. More detailed a
 * Initial release
 
 == Upgrade Notice ==
+
+= 1.3.0 =
+Adds a Reaction Analytics screen: totals, per-emoji breakdown, and your most-reacted posts.
 
 = 1.2.0 =
 Big engagement update: emoji burst & floating animations, milestone confetti, animated counts, haptics, and one-tap social share buttons. All optional and motion-safe.
