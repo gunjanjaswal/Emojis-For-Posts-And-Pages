@@ -147,6 +147,8 @@ If this plugin has been helpful, consider supporting development on Ko-fi:
 
 ## 📝 Changelog
 
+The full changelog lives in [`readme.txt`](readme.txt). Recent releases:
+
 ### Version 1.3.1
 - Tested and confirmed compatible with WordPress 7.1.4.
 
@@ -174,21 +176,6 @@ If this plugin has been helpful, consider supporting development on Ko-fi:
 - Added "Contact Developer" link to plugin row meta on the Plugins screen.
 - Added GitHub Plugin URI header (https://github.com/gunjanjaswal/Emojis-For-Posts-And-Pages).
 - Author display name updated to "Gunjan Jaswal".
-
-### Version 1.1.1
-- Fixed WordPress coding standards: Added proper prefixes to all global variables
-- Variable names now use 'emojfopo_' prefix for compliance
-- Improved code quality and WordPress.org plugin check compatibility
-
-### Version 1.1.0
-- Updated for WordPress 6.9 compatibility
-- Updated minimum PHP requirement to 7.4
-- Added proper plugin headers (Plugin URI, Requires at least, Requires PHP, Tested up to)
-- Enhanced WordPress coding standards compliance
-- Verified compatibility with WordPress 6.9 features
-
-### Version 1.0.0
-- Initial release
 
 ## 🙏 Acknowledgements
 
