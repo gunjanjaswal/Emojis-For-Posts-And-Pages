@@ -1,6 +1,6 @@
 # 😀 Emojis for Posts and Pages 👍
 
-![WordPress Version](https://img.shields.io/badge/WordPress-6.9%20tested-blue.svg)
+![WordPress Version](https://img.shields.io/badge/WordPress-7.1.4%20tested-blue.svg)
 ![PHP Version](https://img.shields.io/badge/PHP-7.4%2B-purple.svg)
 ![License](https://img.shields.io/badge/License-GPL%20v2-green.svg)
 
@@ -147,24 +147,31 @@ If this plugin has been helpful, consider supporting development on Ko-fi:
 
 ## 📝 Changelog
 
+### Version 1.3.1
+- Tested and confirmed compatible with WordPress 7.1.4.
+
+### Version 1.3.0
+- New: a Reaction Analytics screen under Settings. See your total reactions, a breakdown by emoji with each one's share, and the posts people react to the most, each linked straight to its editor.
+
 ### Version 1.2.0
-- New: Engagement effects — emoji burst + floating reactions (Facebook-Live style) when visitors react.
+- New: Engagement effects — emojis burst and float upward when visitors react (Facebook-Live style).
 - New: Animated reaction counts that pop as they grow.
-- New: Milestone celebrations — confetti + toast when a post crosses 10/25/50/100/250/500/1000+ reactions.
-- New: Light haptic feedback on supported mobile devices.
-- New: One-tap share buttons (X, Facebook, WhatsApp, Copy link) with native mobile share sheet.
-- New: Settings toggles for effects and share buttons (both on by default).
-- New: "Settings" link on the plugin row in the Plugins screen.
-- Accessibility: all animations respect `prefers-reduced-motion`. No external libraries.
+- New: Milestone celebrations — confetti and a toast when a post crosses 10, 25, 50, 100, 250, 500, 1000+ reactions.
+- New: Light haptic feedback on supported mobile devices when reacting.
+- New: One-tap share buttons (X, Facebook, WhatsApp, Copy link) with native share sheet on mobile.
+- New: Two settings toggles to enable/disable effects and share buttons (both on by default).
+- New: "Settings" link added to the plugin row on the Plugins screen.
+- Accessibility: All animations honor the visitor's prefers-reduced-motion setting.
+- No external libraries — confetti and animations are pure CSS/JS, keeping the plugin lightweight.
 
 ### Version 1.1.3
 - WordPress 7.0 iframed-editor hygiene: scoped admin CSS/JS to the plugin's own admin screens so nothing leaks into the editor iframe or unrelated admin pages.
-- Front-end reactions are emitted server-side via the `the_content` filter — no editor canvas assets are loaded.
+- Front-end reactions are emitted server-side via the `the_content` filter — no editor canvas assets are loaded, so the editor iframe transition has no impact.
 
 ### Version 1.1.2
 - Updated "Tested up to" to WordPress 7.0.
 - Replaced Buy Me a Coffee donation link with Ko-fi (https://ko-fi.com/gunjanjaswal).
-- Added "Contact Developer" + GitHub links to plugin row meta on the Plugins screen.
+- Added "Contact Developer" link to plugin row meta on the Plugins screen.
 - Added GitHub Plugin URI header (https://github.com/gunjanjaswal/Emojis-For-Posts-And-Pages).
 - Author display name updated to "Gunjan Jaswal".
 
