@@ -3,8 +3,8 @@ Contributors: gunjanjaswal
 Donate link: https://ko-fi.com/gunjanjaswal
 Tags: emoji, reactions, feedback, comments, social
 Requires at least: 5.0
-Tested up to: 7.1
-Stable tag: 1.3.0
+Tested up to: 7.1.4
+Stable tag: 1.3.1
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -93,6 +93,9 @@ Yes, basic statistics are available on the plugin settings page. More detailed a
 3. Reaction statistics
 
 == Changelog ==
+
+= 1.3.1 =
+* Tested and confirmed compatible with WordPress 7.1.4.
 
 = 1.3.0 =
 * New: a Reaction Analytics screen under Settings. See your total reactions, a breakdown by emoji with each one's share, and the posts people react to the most, each linked straight to its editor.
